@@ -436,7 +436,7 @@ describe('run failure telemetry smoke', () => {
     }
   }, 60_000);
 
-  it('keeps buffered Antigravity output admitted before a non-zero policy failure', async () => {
+  it('keeps streamed Antigravity output admitted before a non-zero policy failure', async () => {
     binDir = await mkdtemp(path.join(os.tmpdir(), 'od-antigravity-admission-bin-'));
     await writeFakeAntigravity(binDir);
     process.env.PATH = `${binDir}${delimiter}${process.env.PATH ?? ''}`;
@@ -450,20 +450,26 @@ describe('run failure telemetry smoke', () => {
     await putConfig(started.url, {
       telemetry: { metrics: false, content: false, artifactManifest: false },
       privacyDecisionAt: Date.now(),
+      // Exercise ordinary streamed-output admission before a policy failure.
+      odNextStrategyMode: 'off',
     });
     const run = await createAndWaitForRun(started.url, {
       caseId: 'antigravity_buffered_policy_failure',
       agentId: 'antigravity',
       message: 'od-antigravity-buffered-policy-failure',
     });
+    expect(run.strategyTask).toBeUndefined();
     const events = await readCompletedRunEvents(run.eventsLogPath);
-    const stdoutIndex = events.findIndex((event) => event.event === 'stdout');
+    const outputIndex = events.findIndex((event) => (
+      event.event === 'agent'
+      && JSON.stringify(event.data ?? event).includes('Example assistant output before the policy failure.')
+    ));
     const errorIndex = events.findIndex((event) => event.event === 'error');
     const errorCode = deriveRunErrorCode(run);
 
     expect(run.status).toBe('failed');
-    expect(stdoutIndex).toBeGreaterThanOrEqual(0);
-    expect(errorIndex).toBeGreaterThan(stdoutIndex);
+    expect(outputIndex).toBeGreaterThanOrEqual(0);
+    expect(errorIndex).toBeGreaterThan(outputIndex);
     expect(classifyRunFailure({
       result: runResultFromStatus(run.status),
       status: run,
@@ -676,12 +682,17 @@ if (process.argv.includes('--version')) {
   process.exit(0);
 }
 if (process.argv.includes('--help')) {
-  console.log('Usage: agy -p [--dangerously-skip-permissions]');
+  console.log('Usage: agy [--input-format stream-json] [--output-format stream-json] [--dangerously-skip-permissions]');
   process.exit(0);
 }
-process.stdout.write('Example assistant output before the policy failure.\\n');
-process.stderr.write('[code=model_limit_exceeded] model usage limit exceeded\\n');
-process.exit(1);
+process.stdin.resume();
+process.stdin.on('end', () => {
+  const conversation_id = 'agy-smoke-1';
+  process.stdout.write(JSON.stringify({ event: 'init', conversation_id, init: { cwd: process.cwd(), tools: [], permission_mode: 'request-review' } }) + '\\n');
+  process.stdout.write(JSON.stringify({ event: 'step_update', step_update: { conversation_id, step_index: 1, state: 'DONE', step_type: 'agent_response', text_delta: 'Example assistant output before the policy failure.' } }) + '\\n');
+  process.stderr.write('[code=model_limit_exceeded] model usage limit exceeded\\n');
+  process.exit(1);
+});
 `, 'utf8');
   await chmod(bin, 0o755);
 }
