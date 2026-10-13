@@ -386,6 +386,9 @@ type DeployResultCard = {
   message?: string;
 };
 const MAX_BRIDGE_COORDINATE = 1_000_000;
+// Client-side prototype forms need submit events in every interactive preview.
+// The ordinary sandbox retains its opaque origin and cannot access host APIs.
+const HTML_PREVIEW_SANDBOX = 'allow-scripts allow-forms allow-downloads';
 // Powered-preview iframe attributes. `allow-same-origin` is what makes real
 // Workers / Web Storage / SharedArrayBuffer possible; it is safe here because
 // the powered iframe loads from the daemon's preview-only loopback host, which
@@ -4001,7 +4004,7 @@ function FileVersionManagerModal({
             <iframe
               ref={versionPreviewIframeRef}
               title={selectedVersion ? `${file.name} v${selectedVersion.version}` : file.name}
-              sandbox="allow-scripts allow-downloads"
+              sandbox={HTML_PREVIEW_SANDBOX}
               srcDoc={srcDoc}
               onLoad={() => setLoadedSrcDoc(srcDoc)}
             />
@@ -7200,7 +7203,7 @@ function ReactComponentViewer({
             <iframe
               data-testid="react-component-preview-frame"
               title={file.name}
-              sandbox="allow-scripts allow-downloads"
+              sandbox={HTML_PREVIEW_SANDBOX}
               srcDoc={srcDoc}
               style={{ width: '100%', height: '100%', border: 0 }}
             />
@@ -10193,9 +10196,11 @@ function HtmlViewer({
     // Preserve the old URL-load behavior for ordinary passive documents. Only
     // request a guard when the source heuristic says this artifact needs it;
     // this avoids suppressing authored focus/navigation in unrelated pages.
-    if (needsSandboxShim && !needsPowered) query.push('odPreviewBridge=sandbox');
-    if (needsFocusGuard && !needsPowered) query.push('odPreviewBridge=focus');
-    if (needsRedirectGuard && !needsPowered) query.push('odPreviewBridge=redirect');
+    // Keep guards on the ordinary URL fallback if isolation is unavailable.
+    // The powered URL below uses only BASE_PREVIEW_BRIDGE_QUERY.
+    if (needsSandboxShim) query.push('odPreviewBridge=sandbox');
+    if (needsFocusGuard) query.push('odPreviewBridge=focus');
+    if (needsRedirectGuard) query.push('odPreviewBridge=redirect');
     return query.join('&');
   }, [needsFocusGuard, needsPowered, needsRedirectGuard, needsSandboxShim]);
   const [urlSelectionBridgeReady, setUrlSelectionBridgeReady] = useState(false);
@@ -10653,7 +10658,7 @@ function HtmlViewer({
       if (cancelled) return;
       setPowered({
         resolved: true,
-        url: base ? `${base}?v=${Math.round(file.mtime)}&r=${reloadKey}&${previewBridgeQuery}` : null,
+        url: base ? `${base}?v=${Math.round(file.mtime)}&r=${reloadKey}&${BASE_PREVIEW_BRIDGE_QUERY}` : null,
       });
     });
     return () => {
@@ -11746,7 +11751,7 @@ function HtmlViewer({
   lastRenderedUrlFrameSrcRef.current = urlFrameSrc;
   const urlFrameSandbox = usePoweredPreview
     ? POWERED_PREVIEW_SANDBOX
-    : 'allow-scripts allow-downloads';
+    : HTML_PREVIEW_SANDBOX;
   const urlFrameAllow = usePoweredPreview ? POWERED_PREVIEW_ALLOW : undefined;
   // Arm the first-load overlay only for URL-load previews this pane has never
   // painted (per keep-alive key, so tab revisits and pooled re-attaches skip
@@ -17584,7 +17589,7 @@ function HtmlViewer({
                         aria-hidden={workspaceActive && mode === 'preview' && !useUrlLoadPreview ? undefined : true}
                         tabIndex={workspaceActive && mode === 'preview' && !useUrlLoadPreview ? 0 : -1}
                         title={file.name}
-                        sandbox="allow-scripts allow-downloads"
+                        sandbox={HTML_PREVIEW_SANDBOX}
                         src={srcDocTransportUrl ?? 'about:blank'}
                         srcDoc={srcDocTransportUrl ? undefined : srcDocTransportContent}
                         onLoad={() => {
@@ -17979,14 +17984,14 @@ function HtmlViewer({
           {effectiveDeck || !useUrlLoadPreview ? (
             <iframe
               title="present"
-              sandbox="allow-scripts allow-downloads"
+              sandbox={HTML_PREVIEW_SANDBOX}
               data-od-render-mode="srcdoc"
               srcDoc={effectiveDeck ? presentationSrcDoc : srcDoc}
             />
           ) : (
             <iframe
               title="present"
-              sandbox="allow-scripts allow-downloads"
+              sandbox={HTML_PREVIEW_SANDBOX}
               data-od-render-mode="url-load"
               src={activePreviewSrcUrl}
             />
