@@ -48,7 +48,7 @@ export interface FigmaImportResult {
   /** `figma/DESIGN-context.md` — the agent-facing inventory + reshape brief. */
   contextPath: string;
   /** A ready-to-send prompt that points the agent at the snapshot and asks it
-   *  to reshape the import into a responsive, design-system-bound webpage. */
+   *  to recreate its product screens and platform using its design system. */
   suggestedPrompt: string;
   /** Human label for the import (file name or Figma file title). */
   label: string;

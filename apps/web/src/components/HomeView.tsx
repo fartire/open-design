@@ -3367,7 +3367,7 @@ export function HomeView({
             }}
             onFigmaUrl={(url, notes) => {
               void (async () => {
-                const reshapePrompt = `Migrate the Figma file at ${url} into a responsive webpage using its design system.${notes ? ` ${notes}` : ''}`;
+                const reshapePrompt = `Recreate the Figma design at ${url} as an interactive product prototype using its design system. Preserve the source screen's target platform and structure. For mobile app screens, render the app UI directly without a promotional webpage or decorative phone mockup around it.${notes ? ` ${notes}` : ''}`;
                 try {
                   const { project } = await createProject({
                     name: 'Imported from Figma',

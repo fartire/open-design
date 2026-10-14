@@ -351,7 +351,7 @@ export function NewProjectPanel({
   const [fidelity, setFidelity] = useState<'wireframe' | 'high-fidelity'>(
     'high-fidelity',
   );
-  const [platformTargets, setPlatformTargets] = useState<NewProjectPlatform[]>(['responsive']);
+  const [platformTargets, setPlatformTargets] = useState<NewProjectPlatform[]>(['mobile-android']);
   const [includeLandingPage, setIncludeLandingPage] = useState(false);
   const [includeOsWidgets, setIncludeOsWidgets] = useState(false);
   const [speakerNotes, setSpeakerNotes] = useState(false);
@@ -1224,7 +1224,7 @@ function PlatformPicker({
     const updated = active
       ? value.filter((item) => item !== next)
       : [...value, next];
-    onChange(updated.length > 0 ? updated : ['responsive']);
+    onChange(updated.length > 0 ? updated : ['mobile-android']);
   }
 
   useEffect(() => {
@@ -3201,7 +3201,7 @@ function normalizeSelectedPlatforms(platforms: NewProjectPlatform[]): NewProject
       seen.add(platform);
     }
   }
-  return seen.size > 0 ? [...seen] : ['responsive'];
+  return seen.size > 0 ? [...seen] : ['mobile-android'];
 }
 
 function platformTargetsSupportOsWidgets(platforms: ProjectPlatform[] | NewProjectPlatform[]): boolean {

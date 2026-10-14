@@ -1,4 +1,4 @@
-// Import from Figma — offline `.fig` decode (or a Figma URL) → webpage.
+// Import from Figma — offline `.fig` decode (or a Figma URL) → product prototype.
 //
 // Reachable from the composer "+" menu on the homepage and in a project chat.
 // A dropped/browsed `.fig` is decoded fully offline on the daemon (no Figma
@@ -246,7 +246,7 @@ export function FigmaImportModal({
 
             <textarea
               className={styles.notes}
-              placeholder="Optional: notes for the build (e.g. 'make it a marketing landing page')"
+              placeholder="Optional: notes for the build (e.g. 'Android app screen, dark mode')"
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               rows={2}

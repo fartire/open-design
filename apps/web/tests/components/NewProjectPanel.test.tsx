@@ -229,6 +229,9 @@ describe('NewProjectPanel design system defaults', () => {
     fireEvent.change(screen.getByTestId('new-project-name'), {
       target: { value: 'Responsive web payload' },
     });
+    fireEvent.click(screen.getByRole('button', { name: /Android/i }));
+    fireEvent.click(screen.getByRole('option', { name: /Responsive web/i }));
+    fireEvent.click(screen.getByRole('option', { name: /Android/i }));
     // CompactToggle renders as a `<button aria-pressed>` so screen readers
     // announce it as a toggle button; the role is `button`, not `checkbox`.
     fireEvent.click(screen.getByRole('button', { name: /OS widgets/i }));
@@ -256,7 +259,7 @@ describe('NewProjectPanel design system defaults', () => {
       />,
     );
 
-    fireEvent.click(screen.getByRole('button', { name: /Responsive web/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Android/i }));
 
     expect(screen.getByRole('listbox', { name: 'Target platforms' }).getAttribute('aria-multiselectable')).toBe(
       'true',
@@ -303,7 +306,7 @@ describe('NewProjectPanel design system defaults', () => {
     );
   });
 
-  it('falls back to the generated default title when the prototype name is blank', () => {
+  it('creates an Android prototype with a generated title when the name is blank', () => {
     const onCreate = vi.fn();
     render(
       <NewProjectPanel
@@ -328,6 +331,8 @@ describe('NewProjectPanel design system defaults', () => {
         metadata: expect.objectContaining({
           kind: 'prototype',
           fidelity: 'high-fidelity',
+          platform: 'mobile-android',
+          platformTargets: ['mobile-android'],
         }),
       }),
     );

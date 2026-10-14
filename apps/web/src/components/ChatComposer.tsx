@@ -3998,13 +3998,13 @@ export const ChatComposer = forwardRef<ChatComposerHandle, Props>(
             workspaceContext={workspaceContext}
             onImported={(result) => {
               // Prefill the composer with the reshape prompt; the user reviews
-              // and sends to build the page from the decoded snapshot.
+              // and sends to build the screens from the decoded snapshot.
               setDraft(result.suggestedPrompt);
               editorRef.current?.setText(result.suggestedPrompt);
               editorRef.current?.focus();
             }}
             onFigmaUrl={(url, notes) => {
-              const prompt = `Migrate the Figma file at ${url} into a responsive webpage using its design system.${notes ? ` ${notes}` : ''}`;
+              const prompt = `Recreate the Figma design at ${url} as an interactive product prototype using its design system. Preserve the source screen's target platform and structure. For mobile app screens, render the app UI directly without a promotional webpage or decorative phone mockup around it.${notes ? ` ${notes}` : ''}`;
               setDraft(prompt);
               editorRef.current?.setText(prompt);
               editorRef.current?.focus();

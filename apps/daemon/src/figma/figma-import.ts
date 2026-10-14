@@ -242,8 +242,8 @@ function buildSuggestedPrompt(
       ? `Use \`${thumbnailPath}\` as the visual ground truth and \`figma/assets/\` for any embedded logos/icons (don't redraw them).`
       : '',
     inventory.decoded
-      ? 'Build a clean, responsive webpage that reproduces this design, binding every screen to the real tokens, type, and spacing from `figma/tokens.json` — semantic HTML, not absolute-positioned layers.'
-      : 'The node tree did not fully decode; rebuild the page from the preview and assets, matching the colors and type you can see.',
+      ? 'Build an interactive product prototype that reproduces this design and preserves its target platform and screen structure, binding every screen to the real tokens, type, and spacing from `figma/tokens.json` — semantic HTML, not absolute-positioned layers. For mobile app screens, render the app UI directly without a promotional webpage or decorative phone mockup around it.'
+      : 'The node tree did not fully decode; rebuild the product screens from the preview and assets, preserving their target platform and matching the colors and type you can see. For mobile app screens, render the app UI directly without a promotional webpage or decorative phone mockup around it.',
   ];
   if (notes && notes.trim()) parts.push(`Author notes: ${notes.trim()}`);
   return parts.filter(Boolean).join(' ');
