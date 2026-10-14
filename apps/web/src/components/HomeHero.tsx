@@ -4707,6 +4707,65 @@ const HOME_PROMPT_EXAMPLES: Record<Locale, Record<string, string[]>> = {
       "Buat set suara notifikasi berbranding untuk state sukses, pengingat, dan error dengan tetap menjaga satu identitas sonik",
     ],
   },
+  "vi": {
+    "web-clone": [
+      "URL trang web cần sao chép: https://open-design.ai",
+    ],
+    prototype: [
+      "Thiết kế trang web AI CRM có tỷ lệ chuyển đổi cao với phần mở đầu rõ ràng, câu chuyện tính năng, bằng chứng thuyết phục và nút dùng thử",
+      "Tạo bảng điều khiển máy tính cho kho tri thức nhóm với chức năng tìm kiếm, cập nhật gần đây, quyền truy cập và lối vào cộng tác",
+      "Thiết kế lại quy trình làm quen cho sản phẩm SaaS tài chính để người dùng mới kết nối dữ liệu, hoàn tất thiết lập và nhanh chóng thấy giá trị đầu tiên",
+      "Tạo nguyên mẫu ứng dụng huấn luyện thể hình trên di động, bao gồm đặt mục tiêu, kế hoạch hằng tuần, ghi nhận buổi tập và xem lại tiến độ",
+    ],
+    wireframe: [
+      "Phác khung dây bảng điều khiển SaaS với điều hướng, chỉ số chính, bảng dữ liệu và trạng thái trống",
+      "Phác thảo luồng sơ bộ cho quy trình thanh toán: giỏ hàng, giao hàng, thanh toán và xác nhận",
+      "Bố trí màn hình quản lý nội dung với các trạng thái danh sách, chi tiết và chỉnh sửa ở mức độ trung thực thấp",
+      "Phác khung dây trình hướng dẫn làm quen gồm tài khoản, không gian làm việc, mời thành viên và các bước chạy lần đầu",
+    ],
+    mobile: [
+      "Thiết kế ứng dụng ngân hàng di động với màn hình số dư trang chủ, giao dịch, chuyển tiền và quản lý thẻ",
+      "Bố trí ứng dụng giao đồ ăn gồm duyệt món, chi tiết nhà hàng, giỏ hàng và theo dõi đơn",
+      "Tạo nguyên mẫu ứng dụng theo dõi thói quen với màn hình hôm nay, chuỗi ngày liên tiếp, thêm thói quen và thống kê",
+      "Thiết kế ứng dụng nhắn tin với danh sách trò chuyện, hội thoại, hồ sơ và cài đặt",
+    ],
+    document: [
+      "Soạn sơ yếu lý lịch một trang cho nhà thiết kế sản phẩm cấp cao, gồm tóm tắt, kinh nghiệm, kỹ năng và sản phẩm tiêu biểu",
+      "Viết đề xuất dự án chỉn chu với các phần vấn đề, phương pháp, tiến độ và ngân sách",
+      "Tạo tài liệu giới thiệu sản phẩm một trang gồm thông điệp, tính năng chính, giá và lời kêu gọi hành động",
+      "Tạo bản tóm tắt cuộc họp gọn gàng với chương trình, quyết định, người phụ trách và bước tiếp theo",
+    ],
+    deck: [
+      "Nghiên cứu cơ hội thị trường cho đợt ra mắt sản phẩm, gồm đối thủ, người dùng mục tiêu, giả thuyết giá và câu chuyện ra mắt",
+      "Tạo báo cáo tình hình nhóm hằng tuần với tiến độ, rủi ro, thay đổi chỉ số và ưu tiên tuần tới",
+      "Thiết kế bài thuyết trình gọi vốn với quy mô thị trường, mô hình tăng trưởng, lợi thế sản phẩm và dữ liệu dự báo ba năm",
+      "Tạo bộ trình chiếu đánh giá chiến lược kinh doanh gồm kết quả quý, nguyên nhân gốc rễ, cơ hội và hành động tiếp theo",
+    ],
+    image: [
+      "Tạo poster không gian làm việc AI phong cách glassmorphism với cộng tác nhiều màn hình, ánh sáng dịu và không khí ra mắt cao cấp",
+      "Tạo ảnh chủ đạo thương mại điện tử cho tai nghe không dây mới, làm nổi bật chi tiết chất liệu, bối cảnh phong cách sống và lợi ích cốt lõi",
+      "Thiết kế hình ảnh chủ đạo tối giản cho buổi ra mắt công nghệ với bố cục gọn, sản phẩm nổi bật và thông điệp ra mắt tiết chế",
+      "Tạo bộ hình nhá hàng trên mạng xã hội cho sản phẩm mới, gồm đếm ngược, cận cảnh chi tiết, hé lộ lợi ích và hình ảnh ngày ra mắt",
+    ],
+    video: [
+      "Tạo phim giới thiệu sản phẩm dài 8 giây, chuyển từ bóng dáng sang cận cảnh chi tiết rồi kết thúc bằng dấu hiệu thương hiệu",
+      "Tạo video trình diễn tính năng ứng dụng theo hành trình người dùng, các trạng thái chính và kết quả cuối cùng",
+      "Tạo đoạn mở đầu thương hiệu dọc với chữ chuyển động theo nhịp, cận cảnh sản phẩm và kết thúc bằng logo gọn gàng cho video ngắn",
+      "Chuyển trang web thành quảng cáo mạng xã hội 15 giây bằng cách rút ra thông điệp chính, điểm nhấn tương tác và lời kêu gọi hành động rõ ràng",
+    ],
+    hyperframes: [
+      "Tạo video ngắn ra mắt sản phẩm có phụ đề với thẻ tiêu đề, cảnh tính năng, chuyển cảnh theo nhịp và lời kêu gọi hành động ở cuối",
+      "Tạo trực quan hóa dữ liệu phản ứng theo âm thanh, trong đó thanh, hạt và tiêu đề chuyển động theo nhịp lời dẫn",
+      "Tạo đoạn kết logo 3 giây bằng các đường nét hội tụ, độ đàn hồi tinh tế và hệ màu thương hiệu",
+      "Tạo bản đồ tuyến bay động hiển thị các nút thành phố, mở rộng tuyến đường, dữ liệu dặm bay và khung tổng kết cuối",
+    ],
+    audio: [
+      "Tạo âm thanh khởi động sản phẩm nhẹ nhàng, đáng tin, hơi hướng tương lai và phù hợp khi mở ứng dụng máy tính",
+      "Tạo nhạc nền mở đầu podcast 20 giây với phần mở ấm áp, nhịp rõ ràng và chuyển tiếp mượt sang lời dẫn",
+      "Tạo vòng lặp âm thanh môi trường liền mạch cho ứng dụng thiền, dùng âm sắc thiên nhiên dịu nhẹ, âm trầm ấm và nhịp độ thư thái",
+      "Tạo bộ âm báo mang bản sắc thương hiệu cho trạng thái thành công, nhắc nhở và lỗi, đồng thời duy trì một nhận diện âm thanh thống nhất",
+    ],
+  },
   "de": {
     prototype: [
       "Entwirf eine konversionsstarke Website für ein AI CRM mit klarer Hero-Sektion, Feature-Story, Belegen und Trial-CTA",

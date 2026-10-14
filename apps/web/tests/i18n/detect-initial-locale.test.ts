@@ -68,55 +68,65 @@ describe('detectInitialLocale priority chain', () => {
     expect(detectInitialLocale()).toBe('ja');
   });
 
-  it('ignores an untagged localStorage value when a fresh host locale is available', () => {
+  it('uses Vietnamese instead of a legacy auto-detected language', () => {
     setStoredLocale('ja', 'untagged');
     installHostWithOsLocale('zh-CN');
 
-    expect(detectInitialLocale()).toBe('zh-CN');
+    expect(detectInitialLocale()).toBe('vi');
   });
 
-  it('falls through to navigator when an unsupported locale was stored', () => {
+  it('uses Vietnamese when an unsupported locale was stored', () => {
     setStoredLocale('xx-YY', 'manual');
     setNavigatorLanguages(['de-DE']);
 
-    expect(detectInitialLocale()).toBe('de');
+    expect(detectInitialLocale()).toBe('vi');
   });
 
-  it('uses the desktop host OS locale when no localStorage pick exists', () => {
+  it('defaults to Vietnamese even when desktop and browser use another language', () => {
     installHostWithOsLocale('zh-CN');
     setNavigatorLanguages(['en-US']);
 
-    expect(detectInitialLocale()).toBe('zh-CN');
+    expect(detectInitialLocale()).toBe('vi');
   });
 
-  it('routes packaged OS locale strings through resolveSystemLocale (zh-Hant → zh-TW)', () => {
+  it('defaults to Vietnamese with a regional desktop locale', () => {
     installHostWithOsLocale('zh-Hant-TW');
     setNavigatorLanguages(['en-US']);
 
-    expect(detectInitialLocale()).toBe('zh-TW');
+    expect(detectInitialLocale()).toBe('vi');
   });
 
-  it('falls back to navigator when host osLocale is missing or not a string', () => {
+  it('defaults to Vietnamese when host osLocale is missing or not a string', () => {
     installHostWithOsLocale(undefined);
     setNavigatorLanguages(['ko-KR']);
-    expect(detectInitialLocale()).toBe('ko');
+    expect(detectInitialLocale()).toBe('vi');
 
     installHostWithOsLocale(42);
     setNavigatorLanguages(['fr-FR']);
-    expect(detectInitialLocale()).toBe('fr');
+    expect(detectInitialLocale()).toBe('vi');
   });
 
-  it('falls back to navigator when host osLocale is not in the supported set', () => {
+  it('defaults to Vietnamese with an unsupported desktop locale', () => {
     installHostWithOsLocale('nl-NL');
     setNavigatorLanguages(['pt-PT']);
 
-    expect(detectInitialLocale()).toBe('pt-BR');
+    expect(detectInitialLocale()).toBe('vi');
   });
 
-  it('falls back to en when nothing else is available', () => {
+  it('defaults to Vietnamese when no system language is available', () => {
     clearHost();
     setNavigatorLanguages([]);
 
+    expect(detectInitialLocale()).toBe('vi');
+  });
+
+  it('keeps an explicit English choice after the default changes', () => {
+    setStoredLocale('en', 'manual');
     expect(detectInitialLocale()).toBe('en');
+  });
+
+  it('accepts an explicit Vietnamese choice', () => {
+    setStoredLocale('vi', 'manual');
+    expect(detectInitialLocale()).toBe('vi');
   });
 });

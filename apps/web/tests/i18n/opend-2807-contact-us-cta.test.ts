@@ -1,5 +1,5 @@
 /**
- * OPEND-2807 · 报错卡上那颗常驻按钮从〔联系支持〕改成〔联系我们〕,19 语齐。
+ * OPEND-2807 · 报错卡上那颗常驻按钮从〔联系支持〕改成〔联系我们〕,20 语齐。
  *
  * 工单逐字给的是「联系我们」。这条改的**只有值**,`chat.runError.contactSupportCta`
  * 这个键本身早就在 `i18n/types.ts` 里,按钮位置、行为、testid 都不动。
@@ -7,8 +7,8 @@
  * ⚠️ 稿子 `body-scene.html:302` 的 `data-tip` 写的还是「联系支持」——**工单较新,
  * 以工单为准**(同一条裁决也写在 `w124-chat-tooltips-and-panel-head.test.tsx` 里)。
  *
- * 这条扫**全部 19 个 locale**,不是只测 en:文案回归最常见的形状就是「英文改了、
- * 其余 18 个语言还留着旧词」。反向对照钉住旧值 —— 光断言新值,一个把整本词典
+ * 这条扫**全部 20 个 locale**,不是只测 en:文案回归最常见的形状就是「英文改了、
+ * 其余 19 个语言还留着旧词」。反向对照钉住旧值 —— 光断言新值,一个把整本词典
  * 塞成英文占位的回归也能过。
  */
 import { describe, expect, it } from 'vitest';
@@ -25,7 +25,7 @@ async function loadDict(locale: Locale): Promise<Dict> {
 }
 
 /**
- * 工单要求的最终值,逐字。**不是重译** —— 19 语的译文由 OPEND-2807 那次评审
+ * 工单要求的最终值,逐字。**不是重译** —— 已有 19 语的译文由 OPEND-2807 那次评审
  * 定稿,这里只是把定稿抄成判据。
  */
 const CONTACT_US: Record<Locale, string> = {
@@ -46,6 +46,7 @@ const CONTACT_US: Record<Locale, string> = {
   th: 'ติดต่อเรา',
   tr: 'Bize ulaşın',
   uk: 'Зв’язатися з нами',
+  vi: 'Liên hệ với chúng tôi',
   'zh-CN': '联系我们',
   'zh-TW': '聯絡我們',
 };
@@ -69,15 +70,16 @@ const OLD_CONTACT_SUPPORT: Record<Locale, string> = {
   th: 'ติดต่อฝ่ายสนับสนุน',
   tr: 'Destekle iletişime geç',
   uk: 'Звернутися до підтримки',
+  vi: 'Liên hệ bộ phận hỗ trợ',
   'zh-CN': '联系支持',
   'zh-TW': '聯絡支援',
 };
 
-describe('OPEND-2807 · 〔联系我们〕19 语齐', () => {
-  it('清点:确实是 19 本词典', () => {
-    expect(LOCALES.length).toBe(19);
-    expect(Object.keys(CONTACT_US).length).toBe(19);
-    expect(Object.keys(OLD_CONTACT_SUPPORT).length).toBe(19);
+describe('OPEND-2807 · 〔联系我们〕20 语齐', () => {
+  it('清点:确实是 20 本词典', () => {
+    expect(LOCALES.length).toBe(20);
+    expect(Object.keys(CONTACT_US).length).toBe(20);
+    expect(Object.keys(OLD_CONTACT_SUPPORT).length).toBe(20);
   });
 
   it.each(LOCALES)('%s 的值就是工单定稿那一句', async (locale) => {

@@ -683,6 +683,7 @@ function excalidrawLangCode(locale: Locale): string {
     'tr': 'tr-TR',
     'th': 'th-TH',
     'it': 'it-IT',
+    'vi': 'vi-VN',
   };
   return map[locale] ?? 'en';
 }

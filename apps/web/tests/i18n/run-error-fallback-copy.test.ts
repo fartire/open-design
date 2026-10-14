@@ -4,8 +4,8 @@
  * 这句话原来写的是「原始报错收在下面的『查看详情』里」。那个折叠已经从卡上
  * 下线(用户 2026-08-27),文案再这么写就是**把用户支去看一个不存在的东西**。
  *
- * 这条测试扫**全部 19 个 locale**,不是只测 en —— 文案回归最常见的形状就是
- * 「英文改了、其他 18 个语言还留着旧指路」。
+ * 这条测试扫**全部 20 个 locale**,不是只测 en —— 文案回归最常见的形状就是
+ * 「英文改了、其他 19 个语言还留着旧指路」。
  */
 import { describe, expect, it } from 'vitest';
 
@@ -42,6 +42,7 @@ const DETAILS_POINTER: Record<Locale, string[]> = {
   th: ['ดูรายละเอียด'],
   tr: ['Ayrıntıları gör'],
   uk: ['Докладніше', 'докладніше'],
+  vi: ['Xem chi tiết', 'xem chi tiết'],
   'zh-CN': ['查看详情', '详情'],
   'zh-TW': ['查看詳情', '詳情'],
 };
@@ -68,6 +69,7 @@ const SUPPORT_WORD: Record<Locale, string> = {
   'th': 'ฝ่ายสนับสนุน',
   'tr': 'destek',
   'uk': 'підтримки',
+  'vi': 'hỗ trợ',
   'zh-CN': '支持',
   'zh-TW': '支援',
 };
@@ -79,8 +81,8 @@ const SUPPORT_WORD: Record<Locale, string> = {
 const QUOTE_CHARS = ['“', '”', '«', '»', '「', '」', '„', '‟', '‘', '’', '〈', '〉'];
 
 describe('chat.runError.fallbackMessage 不再指向已下线的「查看详情」', () => {
-  it('19 个 locale 都注册在案(别让新语言从这条扫描里漏出去)', () => {
-    expect(LOCALES).toHaveLength(19);
+  it('20 个 locale 都注册在案(别让新语言从这条扫描里漏出去)', () => {
+    expect(LOCALES).toHaveLength(20);
     for (const locale of LOCALES) {
       expect(DETAILS_POINTER[locale], `missing pointer list for ${locale}`).toBeTruthy();
       expect(SUPPORT_WORD[locale], `missing support word for ${locale}`).toBeTruthy();

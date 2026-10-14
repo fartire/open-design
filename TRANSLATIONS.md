@@ -95,7 +95,7 @@ pnpm i18n:check
 
 ## 📋 Supported Languages
 
-OpenDesign currently supports **19 languages** across different surfaces:
+OpenDesign currently supports **20 languages** across different surfaces:
 
 | Language             | Code    | README | UI Dict | Core Docs | Status |
 | -------------------- | ------- | ------ | ------- | --------- | ------ |
@@ -108,6 +108,7 @@ OpenDesign currently supports **19 languages** across different surfaces:
 | Magyar (Hungarian)   | `hu`    | —      | ✅      | —         | active |
 | Bahasa Indonesia     | `id`    | —      | ✅      | —         | active |
 | Italiano             | `it`    | —      | ✅      | —         | active |
+| Tiếng Việt           | `vi`    | ✅     | ✅      | —         | fork default |
 | 日本語 (Japanese)    | `ja`    | ✅     | ✅      | ✅        | active |
 | 한국어 (Korean)      | `ko`    | ✅     | ✅      | ✅        | active |
 | Polski (Polish)      | `pl`    | —      | ✅      | —         | active |

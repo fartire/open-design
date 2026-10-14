@@ -5,7 +5,7 @@
  *   与 S26c(评论保存失败)同形:Title + Description 两个键。
  * - S31b 检查更新失败:标题「检查更新失败」不带句号,正文逐字。
  *
- * 判据扫全部 19 个 locale:标题行不得以句末标点结尾、新键不得在非英文语言里
+ * 判据扫全部 20 个 locale:标题行不得以句末标点结尾、新键不得在非英文语言里
  * 留英文占位、被拆掉的旧键 `fileViewer.exportFailed` 不得残留。
  */
 import { describe, expect, it } from 'vitest';
@@ -25,7 +25,7 @@ function lookup(dict: Dict, key: string): string | undefined {
   return (dict as unknown as Record<string, string | undefined>)[key];
 }
 
-// Sentence-final punctuation across the 19 locales (Latin, CJK, Arabic/Persian,
+// Sentence-final punctuation across the 20 locales (Latin, CJK, Arabic/Persian,
 // Thai has none). A title line must not end with any of these.
 const SENTENCE_END = /[.。．!！?？؟]\s*$/u;
 
@@ -74,7 +74,7 @@ describe.each(LOCALES)('OPEND-2849 locale %s', (locale) => {
 /**
  * OPEND-2849 补充:
  * - 《补充场景》第 13 行 硬盘写不进去:正文逐字「文件无法写入磁盘。请确认有足够的剩余空间后，再重新尝试。」
- *   (去掉了旧稿「且有权限保存到当前文件夹」那半句,19 语跟着改)。
+ *   (去掉了旧稿「且有权限保存到当前文件夹」那半句,20 语跟着改)。
  * - S32 浏览器没打开:只修标点,半角「,」→ 全角「，」;整句不动(整句改写待产品定)。
  */
 describe('OPEND-2849 supplement copy', () => {
@@ -136,6 +136,7 @@ const OLD_LOCAL_STORAGE_FAILURE: Record<Locale, string> = {
   uk: "Не вдалося записати файл на диск. Переконайтеся, що є достатньо вільного місця та ви маєте дозвіл зберігати файли в поточній папці.",
   "zh-CN": "文件无法写入磁盘。请确认有足够的剩余空间，且有权限保存到当前文件夹。",
   "zh-TW": "檔案無法寫入磁碟。請確認有足夠的剩餘空間，且有權限儲存到目前資料夾。",
+  vi: "Không thể ghi tệp vào ổ đĩa. Vui lòng đảm bảo còn đủ dung lượng trống và bạn có quyền lưu vào thư mục hiện tại.",
 };
 
 describe.each(LOCALES)('OPEND-2849 supplement old wording gone: %s', (locale) => {

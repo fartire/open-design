@@ -82,6 +82,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
       title: 'เอกสารข้อกำหนดผลิตภัณฑ์',
       prompt: 'เขียนเอกสารข้อกำหนดผลิตภัณฑ์สำหรับเครื่องมือที่ช่วยทีมทำงานทางไกลนัดประชุมข้ามเขตเวลา โดยระบุความต้องการของผู้ใช้ ฟีเจอร์หลัก ขั้นตอนการใช้งาน และเกณฑ์การยอมรับ',
     },
+    vi: {
+      title: 'Đặc tả sản phẩm',
+      prompt: 'Viết đặc tả sản phẩm cho một công cụ giúp các nhóm làm việc từ xa lên lịch họp qua nhiều múi giờ, bao gồm nhu cầu người dùng, tính năng cốt lõi, luồng sử dụng và tiêu chí nghiệm thu.',
+    },
     it: {
       title: 'Specifica di prodotto',
       prompt: 'Scrivi una specifica di prodotto per uno strumento che aiuti i team remoti a pianificare riunioni tra fusi orari, includendo esigenze degli utenti, funzioni principali, flussi d’uso e criteri di accettazione.',
@@ -159,6 +163,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
     th: {
       title: 'รายงานการเงิน',
       prompt: 'สร้างรายงานการเงินรายไตรมาสของแบรนด์กาแฟสมมติ ใช้ข้อมูลตัวอย่างที่สมเหตุสมผลแสดงรายได้ ต้นทุน กำไร และกระแสเงินสด พร้อมวิเคราะห์ผลการดำเนินงาน ระบุว่าข้อมูลใช้เพื่อเป็นตัวอย่าง',
+    },
+    vi: {
+      title: 'Báo cáo tài chính',
+      prompt: 'Tạo báo cáo tài chính theo quý cho một thương hiệu cà phê hư cấu. Dùng dữ liệu mẫu hợp lý để trình bày doanh thu, chi phí, lợi nhuận và dòng tiền, đồng thời phân tích kết quả kinh doanh. Ghi rõ dữ liệu chỉ mang tính minh họa.',
     },
     it: {
       title: 'Report finanziario',
@@ -238,6 +246,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
       title: 'รายงานกรณีศึกษาทางคลินิก',
       prompt: 'เขียนรายงานผู้ป่วยปอดอักเสบที่เกิดในชุมชนแบบสมมติเพื่อการเรียนการสอน โดยมีอาการสำคัญ ประวัติ ผลตรวจ เหตุผลในการวินิจฉัย ลำดับการรักษา และการติดตามผล ระบุว่าเป็นกรณีสมมติเพื่อการศึกษา',
     },
+    vi: {
+      title: 'Báo cáo ca bệnh lâm sàng',
+      prompt: 'Viết báo cáo ca viêm phổi mắc phải tại cộng đồng hư cấu phục vụ giảng dạy, gồm lý do khám, tiền sử bệnh, kết quả khám, lập luận chẩn đoán, diễn biến lâm sàng và theo dõi. Ghi rõ đây là ca bệnh hư cấu dùng cho giảng dạy.',
+    },
     it: {
       title: 'Caso clinico',
       prompt: 'Scrivi un caso clinico immaginario di polmonite acquisita in comunità a scopo didattico. Includi motivo della visita, anamnesi, risultati degli esami, ragionamento diagnostico, decorso clinico e controlli successivi. Indica che si tratta di un caso didattico immaginario.',
@@ -315,6 +327,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
     th: {
       title: 'เรซูเม่มินิมอล',
       prompt: 'สร้างเรซูเม่มินิมอลหนึ่งหน้าสำหรับนักออกแบบผลิตภัณฑ์สมมติที่มีประสบการณ์สามปี โดยมีประวัติย่อ ทักษะ ประสบการณ์ทำงาน และผลงานเด่น กรอกข้อมูลสมมติให้ครบและระบุว่าเป็นเรซูเม่ตัวอย่าง',
+    },
+    vi: {
+      title: 'Sơ yếu lý lịch tối giản',
+      prompt: 'Tạo sơ yếu lý lịch tối giản một trang cho một nhà thiết kế sản phẩm hư cấu có ba năm kinh nghiệm, gồm phần giới thiệu, kỹ năng, quá trình làm việc và các dự án tiêu biểu. Điền mọi chi tiết bằng thông tin hư cấu và ghi rõ đây là sơ yếu lý lịch mẫu.',
     },
     it: {
       title: 'Curriculum minimalista',
@@ -394,6 +410,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
       title: 'ใบแจ้งหนี้',
       prompt: 'สร้างใบแจ้งหนี้ค่าบริการออกแบบแบรนด์ของสตูดิโอออกแบบสมมติ กรอกข้อมูลลูกค้าตัวอย่าง รายการบริการ ค่าใช้จ่ายแยกรายการ และคำแนะนำการชำระเงินให้ครบ ระบุว่าเป็นใบแจ้งหนี้ตัวอย่าง',
     },
+    vi: {
+      title: 'Hóa đơn',
+      prompt: 'Tạo hóa đơn dịch vụ xây dựng thương hiệu từ một studio thiết kế hư cấu, điền đầy đủ thông tin khách hàng mẫu, dịch vụ, các khoản phí chi tiết và hướng dẫn thanh toán. Ghi rõ đây là hóa đơn mẫu.',
+    },
     it: {
       title: 'Fattura',
       prompt: 'Crea una fattura per servizi di identità di marca di uno studio di design immaginario, compilando dati completi di esempio del cliente, servizi, importi dettagliati e istruzioni di pagamento. Indicala come fattura di esempio.',
@@ -471,6 +491,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
     th: {
       title: 'โปสเตอร์แยกชิ้นส่วนแว่น VR',
       prompt: 'สร้างโปสเตอร์แสดงชิ้นส่วนแยกของแว่นแนวคิด NOVA VR จัดตัวเครื่อง เลนส์ จอแสดงผล และเซนเซอร์เป็นชั้นลอย พร้อมป้ายชื่อชิ้นส่วนและข้อความผลิตภัณฑ์สั้น ๆ',
+    },
+    vi: {
+      title: 'Poster phân rã tai nghe VR',
+      prompt: 'Tạo poster phân rã cho mẫu tai nghe ý tưởng NOVA VR, trình bày vỏ, thấu kính, màn hình và cảm biến thành các lớp nổi, kèm nhãn linh kiện và mô tả sản phẩm ngắn.',
     },
     it: {
       title: 'Poster esploso di un visore VR',
@@ -550,6 +574,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
       title: 'โปสเตอร์ประกาศย้ายทีม',
       prompt: 'ออกแบบโปสเตอร์แนวคิดการย้ายทีมของนักเตะสมมติ Lucas Moreau ไปปารีสแซงต์แชร์กแมง ใช้สีแดงและน้ำเงิน ภาพนักเตะ และหัวข้อ WELCOME LUCAS ที่โดดเด่น พร้อมข้อความเล็ก ๆ ที่มุมว่าเป็นคอนเซ็ปต์จากแฟนบอล',
     },
+    vi: {
+      title: 'Poster thông báo chuyển nhượng cầu thủ',
+      prompt: 'Thiết kế poster ý tưởng thông báo cầu thủ hư cấu Lucas Moreau gia nhập Paris Saint-Germain, dùng màu đỏ và xanh, chân dung cầu thủ cùng dòng chữ WELCOME LUCAS nổi bật. Thêm nhãn nhỏ ở góc cho biết đây là ý tưởng của người hâm mộ.',
+    },
     it: {
       title: 'Poster di annuncio di un acquisto',
       prompt: 'Progetta un poster concettuale del trasferimento del calciatore immaginario Lucas Moreau al Paris Saint-Germain, con colori rosso e blu, ritratto del giocatore e il titolo WELCOME LUCAS in evidenza. Aggiungi in un angolo una piccola dicitura concept di un tifoso.',
@@ -627,6 +655,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
     th: {
       title: 'โปสเตอร์ตัวอักษรวาดมือย้อนยุค',
       prompt: 'ออกแบบ SLOW MORNINGS เป็นโปสเตอร์ตัวอักษรวาดมือที่ได้แรงบันดาลใจจากป้ายร้านกาแฟเก่า พร้อมภาพถ้วยกาแฟเล็ก ๆ พื้นผิวกระดาษสีครีม เส้นร่างดินสอ และรอยปากกาเมจิกที่มองเห็นได้',
+    },
+    vi: {
+      title: 'Poster chữ viết tay phong cách cổ điển',
+      prompt: 'Biến dòng chữ SLOW MORNINGS thành poster chữ viết tay lấy cảm hứng từ biển hiệu quán cà phê xưa, kèm hình tách cà phê nhỏ, nền giấy màu kem, nét phác bằng bút chì và vệt bút lông nhìn thấy rõ.',
     },
     it: {
       title: 'Poster di lettering rétro',
@@ -706,6 +738,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
       title: 'อวตารอนิเมะไซเบอร์พังก์',
       prompt: 'สร้างอวตารตัวละครอนิเมะต้นฉบับผมสั้นสีเงินสวมหูฟัง ใช้แสงนีออนสีน้ำเงินและม่วงบนใบหน้า ผสานข้อความ DREAM IN NEON เข้ากับแสงบนใบหน้า โดยมีฉากหลังเป็นเมืองอนาคตยามค่ำคืนแบบเบลอ',
     },
+    vi: {
+      title: 'Ảnh đại diện anime cyberpunk',
+      prompt: 'Tạo ảnh đại diện cho nhân vật anime nguyên bản tóc bạc ngắn và đeo tai nghe, dùng ánh đèn neon xanh dương và tím phủ lên khuôn mặt. Hòa dòng chữ DREAM IN NEON vào ánh sáng trên mặt, với thành phố tương lai ban đêm làm mờ ở hậu cảnh.',
+    },
     it: {
       title: 'Avatar anime cyberpunk',
       prompt: 'Crea un avatar di un personaggio anime originale con capelli argento corti e cuffie. Illumina il volto con neon blu e viola e integra la scritta DREAM IN NEON nella luce del viso, con una città futuristica notturna sfocata sullo sfondo.',
@@ -783,6 +819,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
     th: {
       title: 'ภาพพอร์ตเทรตสตูดิโอขาวดำ',
       prompt: 'สร้างภาพพอร์ตเทรตสตูดิโอขาวดำของคนหนุ่มสาวสมมติในสายงานสร้างสรรค์ สวมเสื้อคอเต่าสีดำและมีสีหน้าผ่อนคลาย ใช้ฉากหลังแบ่งส่วนสว่างและมืดกับแสงด้านข้างนุ่ม ๆ เพื่อเน้นใบหน้าและคงพื้นผิวผิวหนังตามธรรมชาติ',
+    },
+    vi: {
+      title: 'Chân dung studio đen trắng',
+      prompt: 'Tạo ảnh chân dung studio đen trắng của một chuyên gia sáng tạo trẻ hư cấu mặc áo cổ lọ đen với vẻ mặt thư thái. Dùng nền chia sáng tối và ánh sáng bên dịu để làm rõ khuôn mặt, đồng thời giữ kết cấu da tự nhiên.',
     },
     it: {
       title: 'Ritratto in studio in bianco e nero',
@@ -862,6 +902,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
       title: 'พรีเซนเทชันระดมทุนรอบ Seed',
       prompt: 'สร้างพรีเซนเทชันระดมทุนสำหรับสตาร์ทอัพของฉัน โดยอธิบายโอกาสทางการตลาด จุดเด่นผลิตภัณฑ์ ความคืบหน้าธุรกิจ และแผนระดมทุน',
     },
+    vi: {
+      title: 'Bài thuyết trình gọi vốn Seed',
+      prompt: 'Tạo bộ trình chiếu gọi vốn cho startup của tôi, giải thích cơ hội thị trường, ưu thế sản phẩm, đà phát triển kinh doanh và kế hoạch huy động vốn.',
+    },
     it: {
       title: 'Presentazione per un round seed',
       prompt: 'Crea una presentazione di raccolta fondi per la mia startup che illustri opportunità di mercato, vantaggi del prodotto, progressi dell’attività e piano di finanziamento.',
@@ -939,6 +983,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
     th: {
       title: 'ข้อเสนอขาย B2B',
       prompt: 'สร้างข้อเสนอขายสำหรับลูกค้าองค์กร โดยนำเสนอวิธีแก้ปัญหาของลูกค้า ประโยชน์ที่คาดหวัง และแผนการนำไปใช้',
+    },
+    vi: {
+      title: 'Đề xuất bán hàng B2B',
+      prompt: 'Tạo đề xuất bán hàng cho khách hàng doanh nghiệp, đưa ra giải pháp cho những khó khăn của họ, lợi ích dự kiến và kế hoạch triển khai.',
     },
     it: {
       title: 'Proposta commerciale B2B',
@@ -1018,6 +1066,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
       title: 'พรีเซนเทชันสำหรับคณะกรรมการ',
       prompt: 'ปรับปรุงพรีเซนเทชันที่มีอยู่ของฉันให้เหมาะกับการประชุมคณะกรรมการ ทำให้ลำดับเรื่องชัดเจน เน้นหลักฐานสำคัญ และใช้รูปแบบภาพที่สอดคล้องกัน',
     },
+    vi: {
+      title: 'Bài thuyết trình cho hội đồng quản trị',
+      prompt: 'Chỉnh sửa bài thuyết trình hiện có của tôi cho cuộc họp hội đồng quản trị bằng cách làm rõ mạch nội dung, nhấn mạnh bằng chứng then chốt và tạo phong cách hình ảnh nhất quán.',
+    },
     it: {
       title: 'Presentazione al consiglio',
       prompt: 'Migliora la mia presentazione esistente per una riunione del consiglio di amministrazione, chiarendo il filo narrativo, evidenziando le prove principali e uniformando lo stile visivo.',
@@ -1095,6 +1147,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
     th: {
       title: 'พรีเซนเทชันสอบโครงงานจบ',
       prompt: 'สร้างพรีเซนเทชันสอบโครงงานจบของฉัน โดยนำเสนอปัญหาวิจัย วิธีดำเนินงาน ผลการตรวจสอบ และผลงานริเริ่มอย่างชัดเจน',
+    },
+    vi: {
+      title: 'Bài thuyết trình bảo vệ đồ án tốt nghiệp',
+      prompt: 'Tạo bài thuyết trình bảo vệ đồ án tốt nghiệp của tôi, trình bày rõ vấn đề nghiên cứu, phương pháp, kết quả kiểm chứng và những đóng góp mới.',
     },
     it: {
       title: 'Discussione del progetto di laurea',
@@ -1174,6 +1230,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
       title: 'แผนเติบโตของแบรนด์',
       prompt: 'สร้างแผนเติบโตของแบรนด์ที่ระบุกลุ่มเป้าหมาย ตำแหน่งแบรนด์ กิจกรรมการตลาด และตัวชี้วัดผลลัพธ์',
     },
+    vi: {
+      title: 'Kế hoạch phát triển thương hiệu',
+      prompt: 'Tạo kế hoạch phát triển thương hiệu, xác định đối tượng mục tiêu, định vị thương hiệu, hoạt động tiếp thị và các chỉ số đo lường kết quả.',
+    },
     it: {
       title: 'Piano di crescita del marchio',
       prompt: 'Crea un piano di crescita del marchio che definisca pubblico di riferimento, posizionamento, azioni di marketing e metriche per misurare i risultati.',
@@ -1251,6 +1311,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
     th: {
       title: 'เว็บไซต์โครงการที่พักหรู',
       prompt: 'ออกแบบเว็บไซต์สำหรับโครงการที่อยู่อาศัยระดับหรู แสดงเอกลักษณ์ด้วยภาพสถาปัตยกรรมขนาดใหญ่และแอนิเมชันเลื่อนหน้าที่ลื่นไหล',
+    },
+    vi: {
+      title: 'Trang web bất động sản cao cấp',
+      prompt: 'Thiết kế trang web cho một khu nhà ở cao cấp, thể hiện nét riêng qua ảnh kiến trúc khổ lớn và hiệu ứng cuộn trang mượt mà.',
     },
     it: {
       title: 'Sito immobiliare di lusso',
@@ -1330,6 +1394,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
       title: 'คู่มือพนักงานใหม่',
       prompt: 'สร้างคู่มือพนักงานใหม่ที่มีตารางสัปดาห์แรก การแนะนำทีม กิจกรรมการเรียนรู้ และรายการอุปกรณ์',
     },
+    vi: {
+      title: 'Cẩm nang hội nhập cho nhân viên mới',
+      prompt: 'Tạo cẩm nang hội nhập cho nhân viên mới với lịch trình tuần đầu tiên, phần giới thiệu nhóm, nhiệm vụ học tập và danh sách thiết bị cần có.',
+    },
     it: {
       title: 'Guida per nuovi dipendenti',
       prompt: 'Crea una guida per nuovi dipendenti con il programma della prima settimana, presentazioni del team, attività formative e un elenco delle attrezzature.',
@@ -1407,6 +1475,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
     th: {
       title: 'หน้าราคาผลิตภัณฑ์',
       prompt: 'ออกแบบหน้าราคาที่เปรียบเทียบราคาและฟีเจอร์แต่ละแพ็กเกจอย่างชัดเจน พร้อมตอบคำถามที่พบบ่อยก่อนซื้อ',
+    },
+    vi: {
+      title: 'Trang giá sản phẩm',
+      prompt: 'Thiết kế trang giá sản phẩm, so sánh rõ ràng giá và tính năng của các gói, đồng thời giải đáp những câu hỏi thường gặp khi mua hàng.',
     },
     it: {
       title: 'Pagina dei prezzi',
@@ -1486,6 +1558,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
       title: 'แอปสร้างนิสัยแบบเกม',
       prompt: 'ออกแบบแอปมือถือที่เปลี่ยนนิสัยประจำวันเป็นภารกิจ โดยติดตามพัฒนาการด้วยค่าประสบการณ์ เลเวล และจำนวนวันที่ทำต่อเนื่อง',
     },
+    vi: {
+      title: 'Ứng dụng thói quen kiểu trò chơi',
+      prompt: 'Thiết kế ứng dụng di động biến thói quen hằng ngày thành nhiệm vụ, theo dõi tiến độ bằng điểm kinh nghiệm, cấp độ và chuỗi ngày liên tiếp.',
+    },
     it: {
       title: 'App di abitudini gamificata',
       prompt: 'Progetta un’app mobile che trasformi le abitudini quotidiane in missioni, monitorando i progressi con punti esperienza, livelli e serie di giorni consecutivi.',
@@ -1563,6 +1639,10 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
     th: {
       title: 'เว็บไซต์แบรนด์สไตล์คอลลาจ',
       prompt: 'ออกแบบเว็บไซต์ที่ได้แรงบันดาลใจจากนิตยสารให้แบรนด์ของฉัน แนะนำผลิตภัณฑ์ผ่านหัวข้อที่สะดุดตา ภาพคอลลาจ และแอนิเมชันเลื่อนหน้า',
+    },
+    vi: {
+      title: 'Trang web thương hiệu phong cách collage tạp chí',
+      prompt: 'Thiết kế trang web lấy cảm hứng từ tạp chí cho thương hiệu của tôi, giới thiệu sản phẩm bằng tiêu đề nổi bật, ảnh ghép và hiệu ứng cuộn trang.',
     },
     it: {
       title: 'Sito del marchio in stile collage',

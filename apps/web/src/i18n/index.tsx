@@ -28,7 +28,7 @@ import { uk } from './locales/uk';
 import { tr } from './locales/tr';
 import { th } from './locales/th';
 import { it } from './locales/it';
-import { getOpenDesignHost } from '@open-design/host';
+import { vi } from './locales/vi';
 import { LOCALES, type Dict, type Locale } from './types';
 
 export { LOCALES, LOCALE_LABEL } from './types';
@@ -56,14 +56,14 @@ const DICTS: Record<Locale, Dict> = {
   'tr': tr,
   'th': th,
   'it': it,
+  'vi': vi,
 };
 
 const LS_KEY = 'open-design:locale';
 // Marker that says "the value in LS_KEY came from a deliberate user
 // action through setLocale, not from some auto-detection path". Only
-// values tagged this way win over the desktop host's injected OS
-// locale, so a stale auto-detected pick can't pin the app forever once
-// the user changes their system language.
+// values tagged this way win over this fork's Vietnamese default,
+// so a stale auto-detected pick cannot override the first-run language.
 const LS_SOURCE_KEY = 'open-design:locale-source';
 const MANUAL_LOCALE_SOURCE = 'manual';
 
@@ -115,29 +115,11 @@ export function tForLanguageTag(
   };
 }
 
-// Read the OS locale the desktop host attached to its client descriptor.
-// Packaged desktop builds need this because Chromium otherwise reports
-// en-US through navigator.language regardless of the OS setting. We go
-// through `getOpenDesignHost` rather than reading the bridge global by
-// name so the web/preload boundary stays single-source (see the
-// `host bridge boundary` guard test).
-function readDesktopHostOsLocale(): string | undefined {
-  if (typeof window === 'undefined') return undefined;
-  const host = getOpenDesignHost();
-  const value = host?.client?.osLocale;
-  return typeof value === 'string' && value.length > 0 ? value : undefined;
-}
-
-// First-run defaults to the user's OS / browser language when possible.
-// Priority: explicit user pick saved to localStorage (only when tagged
-// as manual) > OS locale that the desktop host injected (packaged
-// Electron) > navigator.languages > 'en'. The source tag matters
-// because untagged localStorage values are treated as legacy /
-// auto-detected — they don't override a fresh OS locale read.
-// Exported so tests can pin the priority chain without spinning up the
-// full I18nProvider.
+// This fork starts in Vietnamese on both the server and the client.
+// A language explicitly chosen in Settings still takes precedence;
+// legacy auto-detected values do not pin a fresh installation.
 export function detectInitialLocale(): Locale {
-  if (typeof window === 'undefined') return 'en';
+  if (typeof window === 'undefined') return 'vi';
   let storedLocale: string | null = null;
   let storedSource: string | null = null;
   try {
@@ -153,15 +135,7 @@ export function detectInitialLocale(): Locale {
   ) {
     return storedLocale as Locale;
   }
-  const hostOsLocale = readDesktopHostOsLocale();
-  if (hostOsLocale) {
-    const fromHost = resolveSystemLocale([hostOsLocale]);
-    if (fromHost) return fromHost;
-  }
-  const detected = resolveSystemLocale(
-    navigator.languages?.length ? navigator.languages : [navigator.language],
-  );
-  return detected ?? 'en';
+  return 'vi';
 }
 
 interface I18nContextValue {

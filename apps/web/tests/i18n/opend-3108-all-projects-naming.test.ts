@@ -1,5 +1,5 @@
 /**
- * OPEND-3108 · 侧栏项目入口与项目列表页标题叫「全部项目」，英文 "All projects"，19 语齐。
+ * OPEND-3108 · 侧栏项目入口与项目列表页标题叫「全部项目」，英文 "All projects"，20 语齐。
  *
  * 撤回 OPEND-3142 的「项目」命名（G4 #8153）：Demo 877980fb17 的 `entry.navDrafts`
  * 即「全部项目」，页面内再分 最近浏览过 / 个人项目 / 团队项目 三个 tab。只改值，
@@ -42,6 +42,7 @@ const ALL_PROJECTS: Record<Locale, string> = {
   th: 'โปรเจกต์ทั้งหมด',
   tr: 'Tüm projeler',
   uk: 'Усі проєкти',
+  vi: 'Tất cả dự án',
   'zh-CN': '全部项目',
   'zh-TW': '全部專案',
 };

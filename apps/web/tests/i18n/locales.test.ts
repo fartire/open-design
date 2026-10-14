@@ -7,7 +7,7 @@ import { zhCN } from '../../src/i18n/locales/zh-CN';
 import { zhTW } from '../../src/i18n/locales/zh-TW';
 import { LOCALES, LOCALE_LABEL, type Dict, type Locale } from '../../src/i18n/types';
 
-const EXPECTED_LOCALES = ['en', 'id', 'de', 'zh-CN', 'zh-TW', 'pt-BR', 'es-ES', 'ru', 'fa', 'ar', 'ja', 'ko', 'pl', 'hu', 'fr', 'uk', 'tr', 'th', 'it'];
+const EXPECTED_LOCALES = ['en', 'id', 'de', 'zh-CN', 'zh-TW', 'pt-BR', 'es-ES', 'ru', 'fa', 'ar', 'ja', 'ko', 'pl', 'hu', 'fr', 'uk', 'tr', 'th', 'it', 'vi'];
 
 function placeholders(value: string): string[] {
   const names: string[] = [];
@@ -41,6 +41,7 @@ describe('i18n locales', () => {
     expect(resolveSystemLocale(['zh-Hant-HK', 'en-US'])).toBe('zh-TW');
     expect(resolveSystemLocale(['pt-PT', 'en-US'])).toBe('pt-BR');
     expect(resolveSystemLocale(['es-MX', 'en-US'])).toBe('es-ES');
+    expect(resolveSystemLocale(['vi-VN', 'en-US'])).toBe('vi');
     expect(resolveSystemLocale(['nl-NL', 'en-US'])).toBe('en');
     expect(resolveSystemLocale(['nl-NL'])).toBeNull();
   });
@@ -51,6 +52,7 @@ describe('i18n locales', () => {
     expect((LOCALE_LABEL as Record<string, string>).de).toBe('Deutsch');
     expect((LOCALE_LABEL as Record<string, string>).it).toBe('Italiano');
     expect((LOCALE_LABEL as Record<string, string>).ja).toBe('日本語');
+    expect((LOCALE_LABEL as Record<string, string>).vi).toBe('Tiếng Việt');
   });
 
   it('localizes the Home prototype creation type in every supported locale', async () => {
@@ -72,6 +74,7 @@ describe('i18n locales', () => {
       th: 'ต้นแบบ',
       tr: 'Prototip',
       uk: 'Прототип',
+      vi: 'Nguyên mẫu',
       'zh-CN': '原型',
       'zh-TW': '原型',
     };
@@ -157,6 +160,7 @@ describe('i18n locales', () => {
       th: 'โควตา',
       tr: 'Kota',
       uk: 'Ліміт',
+      vi: 'Hạn mức',
       'zh-CN': '额度',
       'zh-TW': '額度',
     };
@@ -220,6 +224,7 @@ describe('i18n locales', () => {
       th: 'เติมเงิน',
       tr: 'Bakiye yükle',
       uk: 'Поповнити',
+      vi: 'Nạp thêm',
       'zh-CN': '充值',
       'zh-TW': '儲值',
     };

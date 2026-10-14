@@ -31,6 +31,7 @@ const LANDING_LOCALE_BY_APP_LOCALE: Record<Locale, string> = {
   tr: 'tr',
   th: 'en',
   it: 'it',
+  vi: 'en',
 };
 
 export function goPlanPricingUrl(locale: Locale): string {
