@@ -87,7 +87,7 @@ describe('bundled OD Next strategy package identity', () => {
     ]);
     expect(prototype.selectedTaskProfile).toEqual(expect.objectContaining({
       taskType: 'prototype',
-      version: '2.3.2',
+      version: '2.3.3',
       path: './assets/task-profiles/prototype.md',
     }));
     expect(hyperframes.packageHash).not.toBe(prototype.packageHash);
@@ -100,6 +100,9 @@ describe('bundled OD Next strategy package identity', () => {
     const plugin = await resolveStrategyRecord();
     const binding = createBundledStrategyBindingV2({ plugin, taskType: 'prototype' });
     const assets = loadBundledStrategyPromptAssetsV2({ plugin, binding });
+    expect(assets.taskSkill).toContain('Render the app directly in the viewport by default.');
+    expect(assets.taskSkill).toContain('Only when the user explicitly requests a phone mockup');
+    expect(assets.taskSkill).not.toContain('the prototype ships inside the');
     expect(assets.taskResources.map((resource) => resource.path)).toEqual([
       './assets/task-profiles/prototype/device-frames/iphone.html',
       './assets/task-profiles/prototype/device-frames/android.html',

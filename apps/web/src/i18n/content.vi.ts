@@ -422,8 +422,8 @@ export const VI_SKILL_COPY: Record<string, { description?: string; examplePrompt
     examplePrompt: 'Đánh giá của nhà thiết kế cấp cao: chấm từng khía cạnh thiết kế từ 0 đến 10, giải thích tiêu chuẩn điểm 10 và chỉ ra dấu hiệu AI Slop.',
   },
   'platform-design': {
-    description: 'Hơn 300 quy tắc thiết kế từ Apple HIG, Material Design 3 và WCAG 2.2 cho ứng dụng đa nền tảng. Hữu ích khi triển khai một thiết kế trên iOS, Android và web.',
-    examplePrompt: 'Hơn 300 quy tắc thiết kế từ Apple HIG, Material Design 3 và WCAG 2.2 cho ứng dụng đa nền tảng.',
+    description: 'Bộ hướng dẫn Android Material Design 3 và iOS Human Interface Guidelines (HIG) được tích hợp đầy đủ cho màn hình sản phẩm di động. Mặc định dùng Android; dùng quy tắc iOS khi bản mô tả yêu cầu iOS. Bao gồm điều hướng gốc, thành phần, kiểu chữ, khả năng tiếp cận, chế độ tối và luồng màn hình hoạt động.',
+    examplePrompt: 'Thiết kế màn hình ứng dụng Android tương tác bằng Material 3. Hiển thị ứng dụng trực tiếp trong khung nhìn; chỉ thêm phiên bản iOS khi được yêu cầu.',
   },
   'poster-hero': {
     description: 'Poster dọc hoặc ảnh chia sẻ phong cách Moments với tác động thị giác mạnh.',

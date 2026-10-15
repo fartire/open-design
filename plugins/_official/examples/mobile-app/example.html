@@ -1,92 +1,152 @@
 <!doctype html>
-<html lang="en">
+<!-- Mobile app seed: render the product directly; bind semantic tokens to DESIGN.md. -->
+<html lang="vi">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tomato — focus screen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Kế hoạch hôm nay</title>
   <style>
     :root {
-      --bg: #fafaf9; --fg: #1c1b1a; --muted: #6b6964; --border: #e6e4e0;
-      --accent: #c96442; --surface: #ffffff;
+      color-scheme: light; --bg: #f6f8f5; --surface: #ffffff; --fg: #19221c;
+      --muted: #59665e; --border: #dce3dc; --accent: #285c40; --on-accent: #ffffff;
+      --accent-soft: #d7eedc; --font-display: system-ui, sans-serif;
+      --font-body: system-ui, -apple-system, sans-serif; --font-mono: ui-monospace, monospace;
+      --radius-card: 24px; --radius-pill: 999px; --fs-h1: 28px; --fs-h2: 23px;
+      --fs-h3: 18px; --fs-body: 16px; --fs-meta: 14px;
     }
-    * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100vh; background: var(--bg); display: flex; align-items: center; justify-content: center; padding: 32px; font: 14px/1.5 -apple-system, system-ui, sans-serif; color: var(--fg); }
-    .frame { width: 390px; height: 844px; background: black; border-radius: 56px; padding: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.18); position: relative; }
-    .frame::before { content: ''; position: absolute; top: 22px; left: 50%; transform: translateX(-50%); width: 124px; height: 36px; background: black; border-radius: 999px; z-index: 5; }
-    .screen { width: 100%; height: 100%; background: var(--bg); border-radius: 44px; overflow: hidden; display: flex; flex-direction: column; }
-    .status { padding: 14px 24px 6px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; }
-    .status .right { display: flex; gap: 6px; align-items: center; }
-    .header { padding: 56px 24px 24px; }
-    .header .greeting { color: var(--muted); font-size: 14px; margin: 0 0 4px; }
-    .header h1 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
-    .timer-card { margin: 12px 24px; background: var(--accent); color: white; border-radius: 24px; padding: 28px 24px; text-align: center; }
-    .timer-card .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; margin: 0 0 4px; }
-    .timer-card .countdown { font-size: 64px; line-height: 1; letter-spacing: -0.03em; font-weight: 600; margin: 6px 0 18px; font-variant-numeric: tabular-nums; }
-    .timer-card .progress { height: 6px; background: rgba(255,255,255,0.25); border-radius: 999px; overflow: hidden; margin-bottom: 16px; }
-    .timer-card .progress > span { display: block; width: 38%; height: 100%; background: white; }
-    .timer-card .actions { display: flex; gap: 10px; justify-content: center; }
-    .timer-card button { font: inherit; cursor: pointer; padding: 10px 22px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.12); color: white; font-weight: 500; }
-    .timer-card button.primary { background: white; color: var(--accent); border-color: white; }
-    .section { padding: 18px 24px 0; }
-    .section .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 10px; }
-    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 12px; }
-    .stat .v { font-size: 22px; letter-spacing: -0.01em; line-height: 1; margin-bottom: 4px; }
-    .stat .l { font-size: 11px; color: var(--muted); }
-    .tasks { padding: 18px 24px 8px; }
-    .task { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-top: 1px solid var(--border); }
-    .task:first-child { border-top: none; }
-    .check { width: 20px; height: 20px; border: 1.5px solid var(--border); border-radius: 50%; flex-shrink: 0; }
-    .task.done .check { background: var(--accent); border-color: var(--accent); }
-    .task.done .check::after { content: '✓'; color: white; font-size: 13px; display: block; text-align: center; line-height: 18px; }
-    .task .body { flex: 1; }
-    .task .title { font-size: 14.5px; line-height: 1.3; }
+    :root[data-theme="dark"] {
+      color-scheme: dark; --bg: #111813; --surface: #1c261f; --fg: #e1eae2;
+      --muted: #afbeb2; --border: #35483a; --accent: #9ed3ae;
+      --on-accent: #123922; --accent-soft: #254c33;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; width: 100%; height: 100%; }
+    body { background: var(--bg); color: var(--fg); font: var(--fs-body)/1.5 var(--font-body); }
+    button, input { font: inherit; }
+    button, a, input[type="checkbox"] { -webkit-tap-highlight-color: transparent; }
+    button, .tab, .icon-btn { min-width: 48px; min-height: 48px; cursor: pointer; }
+    button, a { touch-action: manipulation; }
+    button { border: 0; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    [hidden] { display: none !important; }
+    h1, h2, h3, p { margin: 0; }
+    h1 { font-size: var(--fs-h1); line-height: 1.2; font-weight: 650; }
+    h2, .h2 { font-size: var(--fs-h2); line-height: 1.3; }
+    .h3 { font-size: var(--fs-h3); }
+    .screen { display: flex; flex-direction: column; width: 100%; height: 100dvh; }
+    .content { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; padding-bottom: 24px; }
+    .header { padding: calc(24px + env(safe-area-inset-top)) 20px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .greeting, .meta { color: var(--muted); font-size: var(--fs-meta); }
+    .greeting { margin-bottom: 6px; }
+    .avatar { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--accent-soft); color: var(--fg); font-weight: 650; flex-shrink: 0; }
+    .pad { padding: 0 20px; }
+    .stack { display: flex; flex-direction: column; gap: 16px; }
+    .row, .row-between { display: flex; align-items: center; gap: 12px; }
+    .row-between { justify-content: space-between; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .card { padding: 20px; border-radius: var(--radius-card); background: var(--surface); border: 1px solid var(--border); }
+    .card.accent { background: var(--accent-soft); border-color: transparent; }
+    .card.flat { border: 0; }
+    .num { font-variant-numeric: tabular-nums; }
+    .summary { margin: 0 20px 24px; }
+    .summary .num { margin: 12px 0; }
+    .summary strong { font-size: 44px; font-weight: 600; line-height: 1; }
+    progress, .progress { width: 100%; height: 8px; accent-color: var(--accent); border: 0; border-radius: 8px; overflow: hidden; }
+    .progress > span { display: block; height: 100%; background: var(--accent); }
+    .section-head { padding: 0 20px 12px; }
+    .list-row { display: flex; align-items: center; gap: 12px; min-height: 72px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .list-row .body { flex: 1; min-width: 0; }
+    .task { cursor: pointer; }
+    .task input { flex: 0 0 48px; width: 48px; height: 48px; margin: 0; accent-color: var(--accent); }
     .task.done .title { color: var(--muted); text-decoration: line-through; }
-    .task .meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
-    .tabbar { margin-top: auto; display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 16px 28px; border-top: 1px solid var(--border); background: var(--surface); }
-    .tab { text-align: center; color: var(--muted); font-size: 11px; padding: 6px 0; }
-    .tab.active { color: var(--accent); font-weight: 500; }
-    .tab .icon { font-size: 18px; line-height: 1; margin-bottom: 4px; }
+    .title { overflow-wrap: anywhere; }
+    .btn-primary { padding: 12px 22px; border-radius: var(--radius-pill); background: var(--accent); color: var(--on-accent); font-weight: 600; }
+    .btn-secondary { padding: 12px 20px; border-radius: var(--radius-pill); background: var(--accent-soft); color: var(--fg); }
+    .icon-btn { display: grid; place-items: center; border-radius: 50%; background: var(--accent-soft); color: var(--fg); }
+    svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .pill, .tag { display: inline-flex; align-items: center; padding: 6px 12px; border-radius: var(--radius-pill); background: var(--accent-soft); font-size: var(--fs-meta); }
+    .ph-img { border-radius: 16px; background: var(--accent-soft); aspect-ratio: 4/3; }
+    .tabbar { flex-shrink: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 10px 12px max(12px, env(safe-area-inset-bottom)); background: var(--surface); border-top: 1px solid var(--border); }
+    .tab { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border-radius: 20px; background: transparent; color: var(--muted); font-size: 13px; padding: 8px 4px; text-decoration: none; }
+    .tab.active { background: var(--accent-soft); color: var(--fg); font-weight: 650; }
+    dialog { width: min(100% - 32px, 440px); padding: 24px; color: var(--fg); background: var(--surface); border: 1px solid var(--border); border-radius: 24px; }
+    dialog::backdrop { background: rgb(0 0 0 / .4); }
+    form { display: grid; gap: 20px; }
+    .field { display: grid; gap: 8px; }
+    input[type="text"] { width: 100%; min-height: 56px; padding: 12px; color: var(--fg); background: var(--bg); border: 1px solid var(--border); border-radius: 12px; }
+    .settings-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; }
+    .settings-row input { width: 48px; height: 48px; accent-color: var(--accent); }
+    @media (prefers-reduced-motion: no-preference) { button { transition: background-color 160ms ease-out; } }
   </style>
 </head>
 <body>
-  <div class="frame" data-od-id="frame">
-    <div class="screen">
-      <div class="status"><span>9:41</span><span class="right">·· 5G · 100%</span></div>
-      <div class="header" data-od-id="header">
-        <p class="greeting">Tuesday · April 22</p>
-        <h1>Two pomodoros to lunch.</h1>
-      </div>
-      <div class="timer-card" data-od-id="timer">
-        <p class="label">Focus session</p>
-        <div class="countdown">15:42</div>
-        <div class="progress"><span></span></div>
-        <div class="actions">
-          <button>Skip</button>
-          <button class="primary">Pause</button>
+  <div class="screen" data-od-id="screen">
+    <main class="content" data-od-id="content">
+      <header class="header" data-od-id="header">
+        <div><p class="greeting">Một ngày, từng việc nhỏ</p><h1 id="screen-title">Hôm nay</h1></div>
+        <div class="avatar" aria-label="Hồ sơ Minh An">MA</div>
+      </header>
+      <section data-page="overview" aria-label="Tổng quan">
+        <div class="card accent summary" data-od-id="summary">
+          <p>Tiến độ hôm nay</p><p class="num"><strong data-done>1</strong> / <span data-total>3</span> công việc</p>
+          <progress value="1" max="3" aria-label="Tiến độ hoàn thành"></progress>
         </div>
-      </div>
-      <div class="section" data-od-id="stats">
-        <p class="label">Today</p>
-        <div class="stats">
-          <div class="stat"><div class="v">3</div><div class="l">Sessions</div></div>
-          <div class="stat"><div class="v">75m</div><div class="l">Focused</div></div>
-          <div class="stat"><div class="v">2</div><div class="l">Tasks done</div></div>
-        </div>
-      </div>
-      <div class="tasks" data-od-id="tasks">
-        <p class="section label" style="padding: 0;">Up next</p>
-        <div class="task done"><div class="check"></div><div class="body"><div class="title">Review Q2 OKRs</div><div class="meta">25m · completed</div></div></div>
-        <div class="task"><div class="check"></div><div class="body"><div class="title">Draft sync-engine post</div><div class="meta">2 sessions estimated</div></div></div>
-        <div class="task"><div class="check"></div><div class="body"><div class="title">1:1 prep with Mira</div><div class="meta">1 session</div></div></div>
-      </div>
-      <nav class="tabbar" data-od-id="tabbar">
-        <div class="tab active"><div class="icon">⏱</div>Focus</div>
-        <div class="tab"><div class="icon">✓</div>Tasks</div>
-        <div class="tab"><div class="icon">📊</div>Stats</div>
-        <div class="tab"><div class="icon">⚙</div>Settings</div>
-      </nav>
-    </div>
+        <div class="section-head row-between"><h2>Việc tiếp theo</h2><button class="btn-primary" data-add>Thêm việc</button></div>
+        <div class="pad" data-tasks></div>
+      </section>
+      <section data-page="tasks" aria-label="Công việc" hidden>
+        <div class="section-head row-between"><p class="meta">Danh sách của bạn</p><button class="btn-primary" data-add>Thêm việc</button></div>
+        <div class="pad" data-tasks></div>
+      </section>
+      <section data-page="settings" aria-label="Cài đặt" hidden>
+        <div class="pad stack"><div class="card"><label class="settings-row"><span>Giao diện tối</span><input id="dark-mode" type="checkbox" role="switch" /></label></div><p class="meta">Giao diện theo lựa chọn của bạn.</p></div>
+      </section>
+    </main>
+    <nav class="tabbar" aria-label="Điều hướng chính" data-od-id="tabbar">
+      <button class="tab active" data-view="overview" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10H3z"/><path d="M9 20v-7h6v7"/></svg>Tổng quan</button>
+      <button class="tab" data-view="tasks"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 6 2 2 4-4M13 6h7M4 13h5M13 13h7M4 20h5M13 20h7"/></svg>Công việc</button>
+      <button class="tab" data-view="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1M5.6 18.4l2.1-2.1m8.6-8.6 2.1-2.1"/></svg>Cài đặt</button>
+    </nav>
   </div>
+  <dialog id="task-dialog" aria-labelledby="task-dialog-title">
+    <form id="task-form"><h2 id="task-dialog-title">Công việc mới</h2><label class="field">Tên công việc<input id="task-name" type="text" maxlength="160" required autocomplete="off" /></label><div class="row"><button class="btn-secondary" type="button" id="cancel-task">Hủy</button><button class="btn-primary" type="submit">Thêm</button></div></form>
+  </dialog>
+  <script>
+    const tasks = [{ title: 'Lên kế hoạch trong ngày', done: true }, { title: 'Hoàn thiện bản thiết kế', done: false }, { title: 'Đọc sách 20 phút', done: false }];
+    function renderTasks() {
+      document.querySelectorAll('[data-tasks]').forEach(container => {
+        container.replaceChildren();
+        tasks.forEach(task => {
+          const row = document.createElement('label'); row.className = 'list-row task' + (task.done ? ' done' : '');
+          const check = document.createElement('input'); check.type = 'checkbox'; check.checked = task.done;
+          check.addEventListener('change', () => { task.done = check.checked; renderTasks(); });
+          const title = document.createElement('span'); title.className = 'body title'; title.textContent = task.title;
+          row.append(check, title); container.append(row);
+        });
+      });
+      const count = tasks.filter(task => task.done).length;
+      document.querySelector('[data-done]').textContent = count; document.querySelector('[data-total]').textContent = tasks.length;
+      const progress = document.querySelector('progress'); progress.max = tasks.length; progress.value = count;
+    }
+    const titles = { overview: 'Hôm nay', tasks: 'Công việc', settings: 'Cài đặt' };
+    document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
+      document.querySelectorAll('[data-page]').forEach(page => { page.hidden = page.dataset.page !== button.dataset.view; });
+      document.querySelectorAll('[data-view]').forEach(tab => { tab.classList.toggle('active', tab === button); if (tab === button) tab.setAttribute('aria-current', 'page'); else tab.removeAttribute('aria-current'); });
+      document.querySelector('#screen-title').textContent = titles[button.dataset.view];
+      document.querySelector('main').scrollTop = 0;
+    }));
+    const dialog = document.querySelector('#task-dialog');
+    document.querySelectorAll('[data-add]').forEach(button => button.addEventListener('click', () => dialog.showModal()));
+    document.querySelector('#cancel-task').addEventListener('click', () => dialog.close());
+    document.querySelector('#task-form').addEventListener('submit', event => {
+      event.preventDefault(); const input = document.querySelector('#task-name'); const title = input.value.trim();
+      if (!title) { input.setCustomValidity('Vui lòng nhập tên công việc.'); input.reportValidity(); return; }
+      tasks.push({ title, done: false }); renderTasks(); event.target.reset(); dialog.close();
+    });
+    document.querySelector('#task-name').addEventListener('input', event => event.target.setCustomValidity(''));
+    const dark = document.querySelector('#dark-mode'); dark.checked = matchMedia('(prefers-color-scheme: dark)').matches;
+    function applyTheme() { document.documentElement.dataset.theme = dark.checked ? 'dark' : 'light'; }
+    dark.addEventListener('change', applyTheme); applyTheme(); renderTasks();
+  </script>
 </body>
 </html>

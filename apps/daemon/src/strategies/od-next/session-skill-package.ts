@@ -1,9 +1,11 @@
 import type { ProjectMetadata } from '@open-design/contracts';
+import { MOBILE_DESIGN_SKILL_ID, mobileDesignSkillIds } from '../../skills/mobile-design.js';
 
 import { findSkillById, type SkillInfo } from '../../skills.js';
 import {
   captureFrozenSkillPackageFromSelections,
   createEmptyFrozenSkillPackage,
+  MAX_SKILL_COUNT,
   normalizeSelectedSkillIds,
   type FrozenSkillPackageV1,
   type ResolvedFrozenSkillSourceV1,
@@ -57,7 +59,10 @@ export async function captureOdNextSessionSkillPackage(input: {
     getLocalPluginBySource: input.getLocalPluginBySource,
   });
   if (exampleSource) sources.push(exampleSource);
-  const skills = await resolveSessionSelectedSkills(input.selection, input.listSkillCatalog);
+  const skills = await resolveSessionSelectedSkills(input.selection, input.listSkillCatalog, {
+    metadata: input.metadata,
+    sourceCount: sources.length,
+  });
   if (skills.length === 0 && sources.length === 0) return createEmptyFrozenSkillPackage();
   try {
     return await captureFrozenSkillPackageFromSelections({ skills, sources });
@@ -84,6 +89,7 @@ export async function captureOdNextSessionSkillPackage(input: {
 async function resolveSessionSelectedSkills(
   selection: OdNextSessionSkillSelection,
   listSkillCatalog: ListSessionSkillCatalog | undefined,
+  context: { metadata: ProjectMetadata | null | undefined; sourceCount: number },
 ): Promise<SkillInfo[]> {
   let requested: string[];
   try {
@@ -92,9 +98,13 @@ async function resolveSessionSelectedSkills(
     warn(`selected Skill ids were rejected; running without them: ${describe(error)}`);
     return [];
   }
-  if (requested.length === 0) return [];
+  const wantsMobileDefaults = mobileDesignSkillIds({
+    metadata: context.metadata,
+    skillIds: requested,
+  }).includes(MOBILE_DESIGN_SKILL_ID);
+  if (requested.length === 0 && !wantsMobileDefaults) return [];
   if (!listSkillCatalog) {
-    warn('no Skill catalogue is wired into this run route; running without selected Skills');
+    if (requested.length > 0) warn('no Skill catalogue is wired into this run route; running without selected Skills');
     return [];
   }
   let catalog: readonly SkillInfo[];
@@ -103,6 +113,14 @@ async function resolveSessionSelectedSkills(
   } catch (error) {
     warn(`Skill catalogue could not be listed; running without selected Skills: ${describe(error)}`);
     return [];
+  }
+  // Defaults must never displace the user's named material or overflow the
+  // frozen-package bound. Older catalogues without this bundle still work.
+  if (wantsMobileDefaults
+    && !requested.includes(MOBILE_DESIGN_SKILL_ID)
+    && requested.length + context.sourceCount < MAX_SKILL_COUNT
+    && findSkillById(catalog, MOBILE_DESIGN_SKILL_ID)) {
+    requested.push(MOBILE_DESIGN_SKILL_ID);
   }
   const resolved: SkillInfo[] = [];
   for (const canonicalId of requested) {

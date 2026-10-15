@@ -4,8 +4,8 @@
 
 ## Pre-flight
 
-1. **Read `assets/template.html`** at minimum through the `<style>` block — every class below is defined there. The Dynamic Island, status bar, home indicator, and tab bar are already drawn; do not re-implement them inline.
-2. **Pick exactly one archetype.** A mobile screen does one job. Mixing "feed + checkout + profile" into one mock is the #1 reason mobile prototypes feel fake.
+1. **Read `assets/template.html`** through the `<style>` block. It is a screen-only scaffold; keep hardware shells and presentation captions out of the product HTML. Read the composed platform-design references for Android or iOS behavior.
+2. **Pick one archetype per screen.** A requested flow gets separate screens connected through real navigation, rather than several phones on a presentation board.
 3. **If the archetype implies a tab bar, keep it; otherwise delete the entire `<nav class="tabbar">` block.** Onboarding, detail, and checkout screens generally don't show one.
 
 ## Class inventory

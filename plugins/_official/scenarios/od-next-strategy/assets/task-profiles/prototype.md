@@ -123,8 +123,9 @@ record them in the Design Spec:
 ### Fit the real usage environment
 
 - Mobile: prioritize touch reach, one-handed use, content scrolling, and
-  system safe areas; tap targets no smaller than 44×44pt, with ≥8px between
-  adjacent targets.
+  system safe areas. Android uses Material 3 with touch targets at least
+  48×48dp; iOS uses HIG with targets at least 44×44pt. Use corresponding CSS
+  pixel targets in HTML prototypes and keep adjacent controls well separated.
 - Web applications: prioritize varying window widths, content reflow, and
   keyboard-and-mouse operation; give clickable elements a pointer cursor and
   hover feedback.
@@ -137,45 +138,27 @@ record them in the Design Spec:
 - Fixed headers, bottom bars, and floating controls reserve matching padding
   for the content they cover.
 
-### Handheld device shell
+### Mobile screen presentation
 
-When the target device is a phone — the brief names iPhone / iOS, Android, or
-a mobile / 手机 app without naming a platform — the prototype ships inside the
-bundled handset shell, never a hand-drawn approximation of one. Open Design
-stages the shells at `.od-frames/` in the project directory and, when it
-resolved the platform, names the selected shell in the `device-frame` context
-fact and quotes its source in `device-frame-shell`.
+Render the app directly in the viewport by default. An unspecified mobile
+platform defaults to Android Material 3; follow explicit iOS targets with HIG.
+Do not surround the product with a landing page, presentation board, handset
+bezel, decorative camera cutout, or fake system chrome unless requested.
 
-| Brief names | Shell |
-|---|---|
-| iPhone, iOS, SwiftUI, UIKit, App Store | `.od-frames/iphone.html` |
-| Android, Material, Pixel, Galaxy, HarmonyOS, APK | `.od-frames/android.html` |
-| A phone / mobile app with no platform named | `.od-frames/neutral.html` |
-| Web app, landing page, responsive site, desktop app, tablet | no shell — the page is the product |
-
-- Use the selected shell's markup and CSS as the document skeleton and put
-  the product inside the `APP CONTENT START` / `APP CONTENT END` slot; the
-  app mounts in `.phone-content` and nowhere else.
-- One handset persists across the whole prototype. Screen navigation and hash
-  routes swap the content inside the screen; a new handset per route appears
-  only when the user asks for a side-by-side board.
-- Keep the shell's hardware and system chrome intact: metallic bezel, outer
-  radius deeper than the screen radius, side keys, the platform's camera
-  treatment, SVG status glyphs with a clock, and the home indicator as the
-  last visible system element. A `border: 1px solid` + `border-radius: 24px`
-  card is not a phone.
-- The app scrolls inside `.phone-content` while the handset stays fixed, and
-  content honors `--phone-safe-top` / `--phone-safe-bottom` so nothing sits
-  under the status bar or the home indicator.
-- The shell is presentation, not a design system: it sets no typography,
-  palette, spacing, components, or navigation for the app. Never put an
-  Android app in the iPhone shell or the reverse.
-- Sheets, dialogs, toasts, and scrims mount inside the shell's screen, often
-  outside the app's own wrapper, so the product's design tokens live on
-  `:root` — never on an inner wrapper where an overlay cannot inherit them.
-- Keep the shell's narrow-viewport fallback (below 480px the handset chrome
-  collapses and the screen fills the viewport) so the artifact still meets
-  the 375px rule above.
+- Each requested screen is a working product view. Connect the screens through
+  app navigation, preserve state, and provide usable return paths.
+- Keep product scrolling, safe areas, sheets, dialogs, and keyboard space
+  functional. Design tokens live on `:root` so overlays inherit the app theme.
+- The `device-frame` and `device-frame-shell` facts describe available optional
+  presentation resources; their presence is not a request to wrap the app.
+- Only when the user explicitly requests a phone mockup or framed presentation,
+  use the matching bundled shell: `.od-frames/android.html` for Android,
+  `.od-frames/iphone.html` for iOS, or `.od-frames/neutral.html` for a platform-
+  neutral presentation. Put product content in its `APP CONTENT START` /
+  `APP CONTENT END` slot and keep one shell across screen navigation.
+- In an explicitly framed presentation, preserve the shell's hardware,
+  `.phone-content` scrolling, `--phone-safe-top` / `--phone-safe-bottom`, and
+  its narrow-viewport fallback. Never put Android UI inside an iPhone shell.
 
 ### Variable-length text and stacked information
 

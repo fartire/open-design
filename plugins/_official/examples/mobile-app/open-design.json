@@ -23,9 +23,9 @@
     "uk": "Мобільний додаток",
     "en": "Mobile App"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publishedAt": "2026-05-12T05:25:44Z",
-  "description": "A mobile-app screen rendered inside a pixel-accurate iPhone 15 Pro frame on the page. Built by copying the seed `assets/template.html` and pasting one screen archetype from `references/layouts.md`. Use when the brief asks for \"mobile app\", \"iOS app\", \"Android app\", \"phone screen\", or \"app UI\".",
+  "description": "Interactive Android-first mobile app screens using complete Material 3 and iOS HIG references. The app fills its viewport without a phone shell or presentation page.",
   "description_i18n": {
     "zh-CN": "在页面中渲染于像素级精确的 iPhone 15 Pro 框架内的移动应用屏幕。通过复制种子文件 assets/template.html 并粘贴 references/layouts.md 中的一个屏幕原型来构建。当需求提到《移动应用》、《iOS 应用》、《Android 应用》、《手机屏幕》或《应用 UI》时使用。",
     "zh-TW": "在頁面中渲染於像素級精確的 iPhone 15 Pro 框架內的行動應用程式畫面。透過複製種子檔案 assets/template.html 並貼上 references/layouts.md 中的一個畫面原型來建構。當需求提到「行動應用程式」、「iOS 應用程式」、「Android 應用程式」、「手機畫面」或「應用程式 UI」時使用。",
@@ -37,14 +37,14 @@
     "es": "Una pantalla de aplicación móvil renderizada dentro de un marco iPhone 15 Pro con precisión de píxeles en la página. Se crea copiando el archivo semilla assets/template.html y pegando un arquetipo de pantalla desde references/layouts.md. Úsalo cuando el brief solicite 'aplicación móvil', 'aplicación iOS', 'aplicación Android', 'pantalla de teléfono' o 'UI de aplicación'.",
     "pt-BR": "Uma tela de aplicativo mobile renderizada dentro de um frame iPhone 15 Pro com precisão pixel a pixel na página. Criado copiando o arquivo semente assets/template.html e colando um arquétipo de tela de references/layouts.md. Use quando o briefing pedir 'aplicativo mobile', 'aplicativo iOS', 'aplicativo Android', 'tela de celular' ou 'UI de aplicativo'.",
     "it": "Una schermata di app mobile renderizzata all'interno di una cornice iPhone 15 Pro pixel-perfect sulla pagina. Creata copiando il file seed assets/template.html e incollando un archetipo di schermata da references/layouts.md. Da utilizzare quando il brief richiede 'app mobile', 'app iOS', 'app Android', 'schermo del telefono' o 'UI dell'app'.",
-    "vi": "Màn hình ứng dụng di động được render bên trong khung iPhone 15 Pro chính xác từng pixel trên trang. Được tạo bằng cách sao chép tệp mẫu assets/template.html và dán một nguyên mẫu màn hình từ references/layouts.md. Sử dụng khi yêu cầu đề cập đến 'ứng dụng di động', 'ứng dụng iOS', 'ứng dụng Android', 'màn hình điện thoại' hoặc 'UI ứng dụng'.",
+    "vi": "Màn hình ứng dụng di động tương tác, ưu tiên Android, sử dụng đầy đủ hướng dẫn Material 3 và iOS HIG. Ứng dụng chiếm trọn khung nhìn, không có khung điện thoại hay trang trình bày.",
     "pl": "Ekran aplikacji mobilnej renderowany wewnątrz dokładnej co do piksela ramki iPhone 15 Pro na stronie. Tworzony przez skopiowanie pliku źródłowego assets/template.html i wklejenie jednego archetypu ekranu z references/layouts.md. Użyj, gdy brief wymienia 'aplikację mobilną', 'aplikację iOS', 'aplikację Android', 'ekran telefonu' lub 'UI aplikacji'.",
     "id": "Layar aplikasi mobile yang dirender di dalam bingkai iPhone 15 Pro yang akurat hingga piksel di halaman. Dibuat dengan menyalin file seed assets/template.html dan menempelkan satu arketipe layar dari references/layouts.md. Gunakan ketika brief meminta 'aplikasi mobile', 'aplikasi iOS', 'aplikasi Android', 'layar ponsel', atau 'UI aplikasi'.",
     "nl": "Een mobiele-appscherm gerenderd in een pixelnauwkeurig iPhone 15 Pro-frame op de pagina. Gemaakt door het seed-bestand assets/template.html te kopiëren en één schermarchetype uit references/layouts.md te plakken. Gebruik wanneer de briefing vraagt om 'mobiele app', 'iOS-app', 'Android-app', 'telefoonscherm' of 'app-UI'.",
     "ar": "شاشة تطبيق محمول معروضة داخل إطار iPhone 15 Pro دقيق بالبكسل على الصفحة. يتم إنشاؤها بنسخ ملف البذرة assets/template.html ولصق نموذج شاشة من references/layouts.md. استخدمها عندما يطلب الموجز 'تطبيق محمول' أو 'تطبيق iOS' أو 'تطبيق Android' أو 'شاشة هاتف' أو 'واجهة تطبيق'.",
     "tr": "Sayfada piksel hassasiyetinde bir iPhone 15 Pro çerçevesi içinde oluşturulmuş mobil uygulama ekranı. assets/template.html tohum dosyası kopyalanıp references/layouts.md dosyasından bir ekran arketipi yapıştırılarak oluşturulur. Brief'te 'mobil uygulama', 'iOS uygulaması', 'Android uygulaması', 'telefon ekranı' veya 'uygulama UI' istendiğinde kullanın.",
     "uk": "Екран мобільного додатка, відрендерений у попіксельно точній рамці iPhone 15 Pro на сторінці. Створюється копіюванням вихідного файлу assets/template.html та вставкою одного архетипу екрану з references/layouts.md. Використовуйте, коли у брифі згадується 'мобільний додаток', 'iOS додаток', 'Android додаток', 'екран телефону' або 'UI додатка'.",
-    "en": "A mobile-app screen rendered inside a pixel-accurate iPhone 15 Pro frame on the page. Built by copying the seed `assets/template.html` and pasting one screen archetype from `references/layouts.md`. Use when the brief asks for \"mobile app\", \"iOS app\", \"Android app\", \"phone screen\", or \"app UI\"."
+    "en": "Interactive Android-first mobile app screens using complete Material 3 and iOS HIG references. The app fills its viewport without a phone shell or presentation page."
   },
   "license": "MIT",
   "author": {
@@ -88,8 +88,9 @@
     },
     "useCase": {
       "query": {
-        "en": "A mobile-app screen rendered inside a pixel-accurate iPhone 15 Pro frame on the page. Built by copying the seed `assets/template.html` and pasting one screen archetype from `references/layouts.md`. Use when the brief asks for \"mobile app\", \"iOS app\", \"Android app\", \"phone screen\", or \"app UI\".",
-        "zh-CN": "使用这个插件完成以下任务：A mobile-app screen rendered inside a pixel-accurate iPhone 15 Pro frame on the page. Built by copying the seed `assets/template.html` and pasting one screen archetype from `references/layouts.md`. Use when the brief asks for \"mobile app\", \"iOS app\", \"Android app\", \"phone screen\", or \"app UI\"."
+        "en": "Design an interactive Android app screen using Material 3. Render the app directly in the viewport; add an iOS variant only when requested.",
+        "zh-CN": "使用这个插件完成以下任务：A mobile-app screen rendered inside a pixel-accurate iPhone 15 Pro frame on the page. Built by copying the seed `assets/template.html` and pasting one screen archetype from `references/layouts.md`. Use when the brief asks for \"mobile app\", \"iOS app\", \"Android app\", \"phone screen\", or \"app UI\".",
+        "vi": "Thiết kế màn hình ứng dụng Android tương tác bằng Material 3. Hiển thị ứng dụng trực tiếp trong khung nhìn; chỉ thêm phiên bản iOS khi được yêu cầu."
       },
       "exampleOutputs": [
         {

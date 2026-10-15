@@ -637,6 +637,7 @@ import { buildDocumentPreview } from './document-preview.js';
 import { lintArtifact, renderFindingsForAgent } from './lint-artifact.js';
 import { loadCraftSections, resolveCraftRequirements } from './craft.js';
 import { skillCwdAliasSegment, stageActiveSkill } from './cwd-aliases.js';
+import { mobileDesignSkillIds } from './skills/mobile-design.js';
 import { buildDesktopArtifactExportInput, buildDesktopPdfExportInput } from './pdf-export.js';
 import { generateMedia } from './media/index.js';
 import { resolveHyperFramesCliPath } from './media/hyperframes-runtime.js';
@@ -10064,12 +10065,8 @@ export async function startServer({
         : null;
     const adHocSkillIds = frozenSkillPackage
       ? []
-      : Array.isArray(skillIds)
-      ? skillIds
-          .map((s) => (typeof s === 'string' ? s.trim() : ''))
-          .filter(Boolean)
-          .filter((id) => resolveSkillId(id) !== effectiveCanonicalSkillId)
-      : [];
+      : mobileDesignSkillIds({ metadata, skillIds, sessionMode })
+          .filter((id) => resolveSkillId(id) !== effectiveCanonicalSkillId);
 
     let skillBody;
     let skillName;
@@ -10149,7 +10146,10 @@ export async function startServer({
         if (!extra) continue;
         registerSkillDir(extra.dir);
         registerSkillMode(extra.mode);
-        if (!effectiveCanonicalSkillId && adHocSkillIds.length === 1) {
+        if (!effectiveCanonicalSkillId && adHocSkillIds.length === 1
+          && Array.isArray(skillIds)
+          && skillIds.some((requested) => typeof requested === 'string'
+            && resolveSkillId(requested.trim()) === canonicalId)) {
           registerPrimarySkillMode(extra.mode);
         }
         if (!critiqueSkillId || extra.critiquePolicy !== null) critiqueSkillId = canonicalId;

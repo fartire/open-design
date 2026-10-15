@@ -25,7 +25,7 @@ type SqliteDb = Database.Database;
 
 export const OD_NEXT_FROZEN_SKILL_PACKAGE_SCHEMA =
   'open-design.od-next-frozen-skill-package/v1' as const;
-const MAX_SKILL_COUNT = 8;
+export const MAX_SKILL_COUNT = 8;
 const MAX_SIDE_FILE_COUNT = 32;
 const MAX_SKILL_BODY_BYTES = 256 * 1024;
 const MAX_SKILL_MANIFEST_BYTES = 256 * 1024;

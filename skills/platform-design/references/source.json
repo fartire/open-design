@@ -1,0 +1,10 @@
+{
+    "license":  "MIT",
+    "revision":  "dc2be825d8b439caea78e9eaa8fb3ac23b0ff3e9",
+    "note":  "Upstream Android and iOS skill bundles are preserved unmodified.",
+    "paths":  [
+                  "skills/android",
+                  "skills/ios"
+              ],
+    "repository":  "https://github.com/ehmo/platform-design-skills"
+}
